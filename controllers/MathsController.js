@@ -2,17 +2,21 @@ import Controller from './Controller.js';
 import * as MathUtilities from '../mathUtilities.js';
 import { handleStaticResourceRequest } from '../staticResourcesServer.js'
 
-export default class CoursesController extends Controller {
+export default class MathsController extends Controller {
     constructor(HttpContext) {
         super(HttpContext, null);
     }
 
     get(id) {
-        if (this.HttpContext.path.params === null || paramKeys.length == 0) {
+        if (this.HttpContext.path.params === null) {
             //No query string, so we should return the documentation page
             return this.HttpContext.response.redirect(this.HttpContext.host + '/maths');
         }
         let paramKeys = Object.keys(this.HttpContext.path.params);
+        if (paramKeys.length == 0) {
+            //No query string, so we should return the documentation page
+            return this.HttpContext.response.redirect(this.HttpContext.host + '/maths');
+        }
 
         //We put every query parameter into the result
         let result = {};

@@ -112,14 +112,6 @@ export default class Response {
     wrongPassword(errormessage = '') { 
         return this.status(482, errormessage); 
     }
-    errorJSON(object, status = 200) {
-        this.res.writeHead(status, { 'content-type': 'application/json' });
-        if (object) {
-            let content = JSON.stringify(object);
-            return this.end(content);
-        }
-        return this.end();
-    }
 
     /////////////////////////////////////////////// 500 ///////////////////////////////////////////////////////
 

@@ -19,3 +19,9 @@ hr {
    row-gap: 20px;
    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
+.container {
+   border-style: groove;
+   background-color: rgb(189, 228, 255);
+   border-color: rgb(2, 59, 71);
+   margin-bottom: 20px;
+}

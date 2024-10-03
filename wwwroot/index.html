@@ -11,28 +11,35 @@
 </head>
 
 <body>
-    <img src="images/favicon.png" alt="" class="icon">
-    <h1>KBG - API SERVER</h1>
-    <h3>Auteur: Nicolas Chourot</h3>
-    <h3>Modifié par: Colin Bougie</h3>
-    <hr>
-    <br>
-    <br>
-    <div style="margin:auto; width:90%">
-        <h1>Liste des services</h1>
+    <fieldset class="container">
+        <legend>URL tests</legend> 
+        <form>
+            <input type="text" id="linkAPI" name="LinkAPI" value="https://sleepy-gaudy-mail.glitch.me/api/maths" style="width: 25rem;">
+            <input type="button" id="confirmButton" name="ConfirmButton" value="Démarrer le test">
 
-        <h2><a href="api/maths" target="_blank">Maths API</a></h2>
-        <div class="endpoints">
-            <span>GET</span>
-            <span>api/contacts</span>
-            <span>retourne la documentation pour l'API</span>
+        </form>
+    </fieldset>
+    
+    <fieldset class="container">
+        <legend>Tests</legend>
+        <div class="results" id="results"> 
 
         </div>
+    </fieldset>
+    
+    <fieldset class="container">
+        <legend>Verdict</legend>
+        <div class="verdict" id="verdict"> 
 
-    </div>
+        </div>
+    </fieldset>
+        
     <script>
         console.log("index");
     </script>
+    <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+    <script src="js/API_Maths.js"></script>
+    <script src="js/siteUI.js"></script>
 </body>
 
 </html>

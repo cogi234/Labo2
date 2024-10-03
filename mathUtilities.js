@@ -4,13 +4,11 @@ export function factorial(n) {
     return n * factorial(n - 1);
 }
 
-export function isPrime(n) {
-    let m = Math.sqrt(n);
-    for (let i = 2; i < m; i++)
-        if (n % i === 0)
+export function isPrime(value) {
+    for (var i = 2; i < value; i++)
+        if (value % i === 0)
             return false;
-
-    return n > 1;
+    return value > 1;
 }
 
 export function findPrime(n) {

@@ -8,11 +8,11 @@ export default class CoursesController extends Controller {
     }
 
     get(id) {
-        let paramKeys = Object.keys(this.HttpContext.path.params);
         if (this.HttpContext.path.params === null || paramKeys.length == 0) {
             //No query string, so we should return the documentation page
-            handleStaticResourceRequest(this.HttpContext);
+            return this.HttpContext.response.redirect(this.HttpContext.host + '/maths');
         }
+        let paramKeys = Object.keys(this.HttpContext.path.params);
 
         //We put every query parameter into the result
         let result = {};
@@ -62,13 +62,13 @@ export default class CoursesController extends Controller {
             result.error = "'y' parameter is missing";
             return this.HttpContext.response.JSON(result);
         }
-        let x = Number.parseFloat(params.x);
-        let y = Number.parseFloat(params.y);
-        if (x === NaN) {
+        let x = parseFloat(params.x);
+        let y = parseFloat(params.y);
+        if (isNaN(x)) {
             result.error = "'x' parameter is not a number";
             return this.HttpContext.response.JSON(result);
         }
-        if (y === NaN) {
+        if (isNaN(y)) {
             result.error = "'y' parameter is not a number";
             return this.HttpContext.response.JSON(result);
         }
@@ -89,18 +89,19 @@ export default class CoursesController extends Controller {
             result.error = "'y' parameter is missing";
             return this.HttpContext.response.JSON(result);
         }
-        let x = Number.parseFloat(params.x);
-        let y = Number.parseFloat(params.y);
-        if (x === NaN) {
+        let x = parseFloat(params.x);
+        let y = parseFloat(params.y);
+        if (isNaN(x)) {
             result.error = "'x' parameter is not a number";
             return this.HttpContext.response.JSON(result);
         }
-        if (y === NaN) {
+        if (isNaN(y)) {
             result.error = "'y' parameter is not a number";
             return this.HttpContext.response.JSON(result);
         }
 
         result.value = x - y;
+        console.log(result.value);
         return this.HttpContext.response.JSON(result);
     }
     multiplication(params, paramKeys, result) {
@@ -116,13 +117,13 @@ export default class CoursesController extends Controller {
             result.error = "'y' parameter is missing";
             return this.HttpContext.response.JSON(result);
         }
-        let x = Number.parseFloat(params.x);
-        let y = Number.parseFloat(params.y);
-        if (x === NaN) {
+        let x = parseFloat(params.x);
+        let y = parseFloat(params.y);
+        if (isNaN(x)) {
             result.error = "'x' parameter is not a number";
             return this.HttpContext.response.JSON(result);
         }
-        if (y === NaN) {
+        if (isNaN(y)) {
             result.error = "'y' parameter is not a number";
             return this.HttpContext.response.JSON(result);
         }
@@ -143,18 +144,23 @@ export default class CoursesController extends Controller {
             result.error = "'y' parameter is missing";
             return this.HttpContext.response.JSON(result);
         }
-        let x = Number.parseFloat(params.x);
-        let y = Number.parseFloat(params.y);
-        if (x === NaN) {
+        let x = parseFloat(params.x);
+        let y = parseFloat(params.y);
+        if (isNaN(x)) {
             result.error = "'x' parameter is not a number";
             return this.HttpContext.response.JSON(result);
         }
-        if (y === NaN) {
+        if (isNaN(y)) {
             result.error = "'y' parameter is not a number";
             return this.HttpContext.response.JSON(result);
         }
+        if (x == 0 && y == 0)
+            result.value = 'NaN';
+        else if (y == 0)
+            result.value = 'infinity';
+        else 
+            result.value = x / y;
 
-        result.value = x / y;
         return this.HttpContext.response.JSON(result);
     }
     modulo(params, paramKeys, result) {
@@ -170,18 +176,21 @@ export default class CoursesController extends Controller {
             result.error = "'y' parameter is missing";
             return this.HttpContext.response.JSON(result);
         }
-        let x = Number.parseFloat(params.x);
-        let y = Number.parseFloat(params.y);
-        if (x === NaN) {
+        let x = parseFloat(params.x);
+        let y = parseFloat(params.y);
+        if (isNaN(x)) {
             result.error = "'x' parameter is not a number";
             return this.HttpContext.response.JSON(result);
         }
-        if (y === NaN) {
+        if (isNaN(y)) {
             result.error = "'y' parameter is not a number";
             return this.HttpContext.response.JSON(result);
         }
+        if (y == 0)
+            result.value = 'NaN';
+        else 
+            result.value = x % y;
 
-        result.value = x % y;
         return this.HttpContext.response.JSON(result);
     }
     factorial(params, paramKeys, result) {
@@ -193,9 +202,9 @@ export default class CoursesController extends Controller {
             result.error = "'n' parameter is missing";
             return this.HttpContext.response.JSON(result);
         }
-        let n = Number.parseFloat(params.n);
-        if (n === NaN || n <= 0 || n % 1 !== 0) {
-            result.error = "'n' parameter mut be an integer > 0";
+        let n = parseFloat(params.n);
+        if (isNaN(n) || n <= 0 || n % 1 !== 0) {
+            result.error = "'n' parameter must be an integer > 0";
             return this.HttpContext.response.JSON(result);
         }
 
@@ -211,9 +220,9 @@ export default class CoursesController extends Controller {
             result.error = "'n' parameter is missing";
             return this.HttpContext.response.JSON(result);
         }
-        let n = Number.parseFloat(params.n);
-        if (n === NaN || n <= 0 || n % 1 !== 0) {
-            result.error = "'n' parameter mut be an integer > 0";
+        let n = parseFloat(params.n);
+        if (isNaN(n) || n <= 0 || n % 1 !== 0) {
+            result.error = "'n' parameter must be an integer > 0";
             return this.HttpContext.response.JSON(result);
         }
 
@@ -229,9 +238,9 @@ export default class CoursesController extends Controller {
             result.error = "'n' parameter is missing";
             return this.HttpContext.response.JSON(result);
         }
-        let n = Number.parseFloat(params.n);
-        if (n === NaN || n <= 0 || n % 1 !== 0) {
-            result.error = "'n' parameter mut be an integer > 0";
+        let n = parseFloat(params.n);
+        if (isNaN(n) || n <= 0 || n % 1 !== 0) {
+            result.error = "'n' parameter must be an integer > 0";
             return this.HttpContext.response.JSON(result);
         }
 
